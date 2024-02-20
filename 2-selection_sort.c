@@ -20,22 +20,25 @@ void swap_ints(int *a, int *b)
  */
 void selection_sort(int *array, size_t size)
 {
-	size_t i, j, min;
+	size_t i,j, jMin;
 
-	if (array == NULL || size < 2)
-		return;
+
 
 	for (i = 0; i < size - 1; i++)
 	{
-		min = i;
+		jMin = i;
 		for (j = i + 1; j < size; j++)
 		{
-			if (array[j] < array[min])
-				min = j;
+			if (array[j] < array[jMin])
+			{
+				jMin = j;
+				continue;
+			}
 		}
-		if (min != i)
+
+		if (jMin != i)
 		{
-			swap_ints(&array[min], &array[i]);
+			swap_ints(&array[i], &array[jMin]);
 			print_array(array, size);
 		}
 	}
