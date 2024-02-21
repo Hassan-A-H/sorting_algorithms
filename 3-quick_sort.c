@@ -54,18 +54,19 @@ size_t partition(int *array, size_t size, int lo, int hi)
 {
 	int i, j, pivot;
 
-	pivot = hi;
-	for (j = i = lo; j < hi; j++)
+	pivot = array[hi];
+	i = lo - 1;
+	for (j = lo; j < hi; j++)
 	{
-		if (array[j] <= array[pivot])
+		if (array[j] <= pivot)
 		{
-			swap_ints(&array[i], &array[j]);
 			i++;
+			swap_ints(&array[i], &array[j]);
 			print_array(array, size);
 		}
 	}
-	swap_ints(&array[pivot], &array[i]);
-	return (i);
+	swap_ints(&array[i + 1], &array[hi]);
+	return (i + 1);
 }
 
 /**
