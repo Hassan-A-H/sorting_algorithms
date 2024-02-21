@@ -1,6 +1,6 @@
 #include "sort.h"
 
-void swap_ints(int *a, int *b);
+void swap_ints(int *array, size_t size, int *a, int *b); 
 void lomuto_sort(int *array, size_t size, int lo, int hi);
 size_t partition(int *array, size_t size, int lo, int hi);
 /**
@@ -61,11 +61,10 @@ size_t partition(int *array, size_t size, int lo, int hi)
 		if (array[j] <= pivot)
 		{
 			i++;
-			swap_ints(&array[i], &array[j]);
-			print_array(array, size);
+			swap_ints(array, size, &array[i], &array[j]);
 		}
 	}
-	swap_ints(&array[i + 1], &array[hi]);
+	swap_ints(array, size, &array[i + 1], &array[hi]);
 	return (i + 1);
 }
 
@@ -74,7 +73,7 @@ size_t partition(int *array, size_t size, int lo, int hi)
  * @a: The first integer to swap.
  * @b: The second integer to swap.
  */
-void swap_ints(int *a, int *b)
+void swap_ints(int *array, size_t size, int *a, int *b)
 {
 	int temp;
 
@@ -83,5 +82,6 @@ void swap_ints(int *a, int *b)
 		temp = *a;
 		*a = *b;
 		*b = temp;
+		print_array(array, size);
 	}
 }
